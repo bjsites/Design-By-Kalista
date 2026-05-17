@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="hr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DESIGN BY KALISTA / Proizvodi</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: rgb(255, 244, 237);
+            color: #1a1a1a;
+        }
+
+        /* Header & Nav */
+        .logo-header {
+            background-color: rgb(255, 244, 237);
+            padding: 20px 0;
+        }
+
+        #stich {
+            height: 150px;
+        }
+
+        .navbar {
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            padding: 15px 0;
+        }
+
+        .nav-link-custom {
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            color: pink !important;
+        }
+
+        /* 3D Kartice */
+        .product-card-container {
+            perspective: 1000px;
+            margin-bottom: 30px;
+        }
+
+        .product-card {
+            background: white;
+            border: none;
+            border-radius: 25px;
+            overflow: hidden;
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.6s ease;
+            transform-style: preserve-3d;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            height: 100%;
+        }
+
+        .product-card-container:hover .product-card {
+            transform: rotateY(10deg) rotateX(5deg) translateY(-10px);
+            box-shadow: -15px 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-img-container {
+            background: #ffffff;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 320px;
+            position: relative;
+        }
+
+        .card-img-top {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .price-tag {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .btn-buy {
+            background-color: #000;
+            color: #fff;
+            border-radius: 12px;
+            padding: 10px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            width: 100%;
+            border: 2px solid #000;
+            transition: 0.3s;
+        }
+
+        .btn-buy:hover {
+            background-color: transparent;
+            color: #000;
+        }
+
+        .tab {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: nowrap;
+            /* ⬅️ nema prelaska u novi red */
+            background: linear-gradient(135deg, rgb(255, 244, 237) 0%, pink 100%);
+            border-radius: 25px;
+            margin: 30px auto;
+            max-width: 1000px;
+            /* ⬅️ malo šire da stane 5 tabova */
+            box-shadow: 0 10px 30px rgba(255, 192, 203, 0.3);
+            padding: 10px;
+        }
+
+        .tab button {
+            flex: 1;
+            /* ⬅️ svi tabovi jednaka širina */
+            text-align: center;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 15px 10px;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: #1a1a1a;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            white-space: nowrap;
+            /* ⬅️ tekst u jednom redu */
+        }
+
+        @media (max-width: 768px) {
+            .tab {
+                flex-wrap: wrap;
+            }
+
+            .tab button {
+                flex: 1 1 50%;
+                font-size: 0.8rem;
+            }
+        }
+
+        .badge-sold {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: red;
+            color: #fff;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 900;
+            z-index: 10;
+        }
+
+        footer {
+            background: pink;
+            color: purple;
+            padding: 80px 0;
+            margin-top: 100px;
+        }
+
+        /* DEFINITIVNI SPACE FIX */
+        .tab-content {
+            margin-top: 0 !important;
+            padding-bottom: 0 !important;
+        }
+
+        .tab-pane {
+            padding-bottom: 0 !important;
+        }
+
+        .tab-pane .row {
+            margin-top: 0 !important;
+            margin-bottom: 0 !important;
+        }
+
+        .container-tabs {
+            padding-bottom: 0 !important;
+        }
+
+        footer {
+            margin-top: 0 !important;
+        }
+
+        /* Popravi <spam> tagove - premjesti badge-sold UNUTR */
+        .badge-sold {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: red;
+            color: #fff;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 900;
+            z-index: 10;
+        }
+
+        .btn-footer {
+            background-color: pink;
+            color: purple;
+            font-weight: 700;
+            padding: 12px 35px;
+            border-radius: 15px;
+            text-decoration: none;
+            display: inline-block;
+            transition: 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .btn-footer:hover {
+            background-color: white;
+            border-color: purple;
+            color: purple;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="logo-header">
+        <div class="container">
+            <div class="row align-items-center text-center">
+                <div class="col-md-6 text-md-start">
+                    <img src="../logo pravi.jpeg" alt="logo" style="height: 150px;">
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <img src="../image.png" alt="stich" id="stich">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-black" href="#" style="font-weight: 900; color: pink;">DESIGN BY KALISTA</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav gap-lg-4">
+                    <li class="nav-item"><a class="nav-link nav-link-custom" href="../index.html">Početna</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-custom" href="../o_nama.html">O nama</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#kontakt" style="color: pink;">KONTAKT</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-custom" href="proizvodi.html"
+                            style="border-bottom: 2px solid pink;">Proizvodi</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Tab links -->
+    <div class="tab">
+        <button class="tablinks-active" onclick="openCity(event, 'Narukvice')">Narukvice</button>
+        <button class="tablinks" onclick="openCity(event, 'Privjesci')">Privjesci</button>
+        <button class="tablinks" onclick="openCity(event, 'Kemijske')">Kemijske</button>
+        <button class="tablinks" onclick="openCity(event, 'Cetkice')">Četkice</button>
+        <button class="tablinks" onclick="openCity(event, 'Pandora')">Pandora design</button>
+        <button class="tablinks" onclick="openCity(event, 'Telefon')">Privjesci za telefon</button>
+    </div>
+
+    <!-- Tab content -->
+    <div id="Narukvice" class="tabcontent">
+        <div class="row g-3 justify-content-center">
+
+            <div class="col-sm-3 product-card-container">
+                <div class="card product-card">
+
+                    <div class="card-img-container">
+                        <span class="badge-sold">SOLD</span>
+                        <img src="narukvica 1.jpeg" class="card-img-top" alt="maskica 1">
+                    </div>
+                    <div class="card-body p-4 pt-0">
+                        <h5 class="fw-bold mb-1">Pink Graffiti</h5>
+                        <p class="small text-muted mb-3">Tvoja ruka, tvoja umetnost.</p>
+                        <span class="price-tag">3.00 KM</span>
+                        <a href="#kontakt" class="btn-buy text-center">NARUČI</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-3 product-card-container">
+                <div class="card product-card">
+                    <span class="badge-sold">SOLD</span>
+                    <div class="card-img-container">
+                        <img src="narukvica 2.jpeg" class="card-img-top" alt="Neon Waves">
+                    </div>
+                    <div class="card-body p-4 pt-0">
+                        <h5 class="fw-bold mb-1">Kuromi White</h5>
+                        <p class="small text-muted mb-3">Are you redy for Kuromi?</p>
+                        <span class="price-tag">3,00 KM</span>
+                        <a href="#kontakt" class="btn-buy text-center">NARUČI</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-3 product-card-container">
+
+                <div class="card product-card">
+                    <span class="badge-sold">SOLD</span>
+                    <div class="card-img-container">
+                        <img src="narukvica 3.jpeg" class="card-img-top" alt="Topographic Pulse">
+                    </div>
+                    <div class="card-body p-4 pt-0">
+                        <h5 class="fw-bold mb-1">Koreni Ljubavi</h5>
+                        <p class="small text-muted mb-3">Pusti korenje u ljubavi, rasti u lepoti.</p>
+                        <span class="price-tag">3,00 KM</span>
+                        <a href="#kontakt" class="btn-buy text-center">NARUČI</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row g-3 justify-content-center">
+
+            <div class="col-sm-3 product-card-container">
+                <div class="card product-card">
+
+                    <div class="card-img-container">
+                        <img src="narukvica 4.jpg" class="card-img-top" alt="maskica 1">
+                    </div>
+                    <div class="card-body p-4 pt-0">
+                        <h5 class="fw-bold mb-1">Chained Heart</h5>
+                        <p class="small text-muted mb-3">Nemogu vejrovati da me voliš.</p>
+                        <span class="price-tag">3.00 KM</span>
+                        <a href="#kontakt" class="btn-buy text-center">NARUČI</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 product-card-container">
+                <div class="card product-card">
+
+                    <div class="card-img-container">
+                        <img src="komplet_n_1_novo.jpeg" class="card-img-top" alt="maskica 1">
+                    </div>
+                    <div class="card-body p-4 pt-0">
+                        <h5 class="fw-bold mb-1">Komplet narukvica od 2</h5>
+                        <p class="small text-muted mb-3">Biti ćemo najbolji prijatelji na svijetu</p>
+                        <span class="price-tag">5.00 KM</span>
+                        <a href="#kontakt" class="btn-buy text-center">NARUČI</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 product-card-container">
+                <div class="card product-card">
+
+                    <div class="card-img-container">
+                        <img src="narukvica1novo.jpeg" class="card-img-top" alt="maskica 1">
+                    </div>
+                    <div class="card-body p-4 pt-0">
+                        <h5 class="fw-bold mb-1">New Pink Graffiti</h5>
+                        <p class="small text-muted mb-3">Tvoja ruka tvoj stil</p>
+                        <span class="price-tag">3.00 KM</span>
+                        <a href="#kontakt" class="btn-buy text-center">NARUČI</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row g-3 justify-content-center">
+
+            <div class="col-sm-3 product-card-container">
+                <div class="card product-card">
+                    <spam class=" badge-sold">SOLD</spam>
+
+                    <div class="card-img-container">
+                        <img src="narukvica2novo.jpeg" class="card-img-top" alt="maskica 1">
+                    </div>
+                    <div class="card-body p-4 pt-0">
+                        <h5 class="fw-bold mb-1">Roza Sreća</h5>
+                        <p class="small text-muted mb-3">Ti si mi sreća dok sam u nesreći</p>
+                        <span class="price-tag">3.00 KM</span>
+                        <a href="#kontakt" class="btn-buy text-center">NARUČI</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 product-card-container">
+                <div class="card product-card">
+
+                    <div class="card-img-container">
+                        <img src="narukvica3novo.jpeg" class="card-img-top" alt="maskica 1">
+                    </div>
+                    <div class="card-body p-4 pt-0">
+                        <h5 class="fw-bold mb-1">Plava Sreća</h5>
+                        <p class="small text-muted mb-3">Ti si mi sreća u nesreći</p>
+                        <span class="price-tag">3.00 KM</span>
+                        <a href="#kontakt" class="btn-buy text-center">NARUČI</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 product-card-container">
+                <div class="card product-card">
+
+                    <div class="card-img-container">
+                        <img src="narukvica4novo.jpeg" class="card-img-top" alt="maskica 1">
+                    </div>
+                    <div class="card-body p-4 pt-0">
+                        <h5 class="fw-bold mb-1">Svjetlo Plava Sreća</h5>
+                        <p class="small text-muted mb-3">Ti si sreća u nesreći</p>
+                        <span class="price-tag">3.00 KM</span>
+                        <a href="#kontakt" class="btn-buy text-center">NARUČI</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row g-3 justify-content-center">
+
+            <div class="col-sm-3 product-card-container">
+                <div class="card product-card">
+
+                    <div class="card-img-container">
+                        <img src="narukvica5novo.jpeg" class="card-img-top" alt="maskica 1">
+                    </div>
+                    <div class="card-body p-4 pt-0">
+                        <h5 class="fw-bold mb-1">Plavo Srce</h5>
+                        <p class="small text-muted mb-3">Ti si mi sreča dok sam u ljubavi</p>
+                        <span class="price-tag">3.00 KM</span>
+                        <a href="#kontakt" class="btn-buy text-center">NARUČI</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 product-card-container">
+                <div class="card product-card">
+
+                    <div class="card-img-container">
+                        <img src="narukvica6novo.jpeg" class="card-img-top" alt="maskica 1">
+                    </div>
+                    <div class="card-body p-4 pt-0">
+                        <h5 class="fw-bold mb-1">Bijela Sreća</h5>
+                        <p class="small text-muted mb-3">Ti si mi sreća u nesreći</p>
+                        <span class="price-tag">3.00 KM</span>
+                        <a href="#kontakt" class="btn-buy text-center">NARUČI</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 product-card-container">
+                <div class="card product-card">
+
+                    <div class="card-img-container">
+                        <img src="narukvica7novo.jpeg" class="card-img-top" alt="maskica 1">
+                    </div>
+                    <div class="card-body p-4 pt-0">
+                        <h5 class="fw-bold mb-1">Plavi Biser</h5>
+                        <p class="small text-muted mb-3">Kad te vidim obogatim se.</p>
+                        <span class="price-tag">3.00 KM</span>
+                        <a href="#kontakt" class="btn-buy text-center">NARUČI</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row g-3 justify-content-center">
+
+            <div class="col-sm-3 product-card-container">
+                <div class="card product-card">
+
+                    <div class="card-img-container">
+                        <img src="/proizvod.html/kalista novi proizvodi/8_mart.jpeg" class="card-img-top"
+                            alt="maskica 1">
+                    </div>
+                    <div class="card-body p-4 pt-0">
+                        <h5 class="fw-bold mb-1">NARUKVICA ZA 8.MART</h5>
+                        <p class="small text-muted mb-3">Ti si mi sreča dok sam u ljubavi</p>
+                        <span class="price-tag">3.00 KM</span>
+                        <a href="#kontakt" class="btn-buy text-center">NARUČI</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 product-card-container">
+                <div class="card product-card">
+
+                    <div class="card-img-container">
+                        <img src="/proizvod.html/kalista novi proizvodi/sova.jpeg" class="card-img-top" alt="maskica 1">
+                    </div>
+                    <div class="card-body p-4 pt-0">
+                        <h5 class="fw-bold mb-1">Hoo! Hoo!</h5>
+                        <p class="small text-muted mb-3">Možete okrenuti stil za 360°</p>
+                        <span class="price-tag">3.00 KM</span>
+                        <a href="#kontakt" class="btn-buy text-center">NARUČI</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 product-card-container">
+                <div class="card product-card">
+
+                    <div class="card-img-container">
+                        <img src="/proizvod.html/kalista novi proizvodi/roza_narukvica.jpeg" class="card-img-top"
+                            alt="maskica 1">
+                    </div>
+                    <div class="card-body p-4 pt-0">
+                        <h5 class="fw-bold mb-1">Roza Narukvica</h5>
+                        <p class="small text-muted mb-3">Kad te vidim obogatim se.</p>
+                        <span class="price-tag">3.00 KM</span>
+                        <a href="#kontakt" class="btn-buy text-center">NARUČI</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row g-3 justify-content-center">
+
+            <div class="col-sm-3 product-card-container">
+                <div class="card product-card">
+
+                    <div class="card-img-container">
+                        <img src="/proizvod.html/kalista novi proizvodi/mama.jpeg" class="card-img-top" alt="maskica 1">
+                    </div>
+                    <div class="card-body p-4 pt-0">
+                        <h5 class="fw-bold mb-1">Mama, Volim te</h5>
+                        <p class="small text-muted mb-3">Volim te mama!</p>
+                        <span class="price-tag">3.00 KM</span>
+                        <a href="#kontakt" class="btn-buy text-center">NARUČI</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="Privjesci" class="tabcontent">
+        <div class="row g-3 justify-content-center">
+            <div class="col-sm-3 product-card-container">
+                <div class="card product-card">
+                    <div class="card-img-container">
+                        <img src="privjesak 1.jpeg" class="card-img-top" alt="maskica 1">
+                    </div>
+                    <div class="card-body p-4 pt-0">
+                        <h5 class="fw-bold mb-1">Happy Elephant</h5>
+                        <p class="small text-muted mb-3">Uljepšaj si stvari sa malim slonom</p>
+                        <span class="price-tag">3,00 KM</span>
+                        <a href="#kontakt" class="btn-buy text-center">NARUČI</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-3 product-card-container">
+                <div class="card product-card">
+                    <div class="card-img-container">
+                        <img src="privjesak 2.jpeg" class="card-img-top" alt="Neon Waves">
+                    </div>
+                    <div class="card-body p-4 pt-0">
+                        <h5 class="fw-bold mb-1">Chained Heart</h5>
+                        <p class="small text-muted mb-3">Ovaj privjesak može spojiti dvoje prijatelja!</p>
+                        <span class="price-tag">5,00 KM</span>
+                        <a href="#kontakt" class="btn-buy text-center">NARUČI</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-3 product-card-container">
+                <div class="card product-card">
+                    <div class="card-img-container">
+                        <img src="privjesak 3.jpeg" class="card-img-top" alt="Topographic Pulse">
+                    </div>
+                    <div class="card-body p-4 pt-0">
+                        <h5 class="fw-bold mb-1">Kuromi + Pingvin</h5>
+                        <p class="small text-muted mb-3">Pick one you get all!</p>
+                        <span class="price-tag">5,00 KM</span>
+                        <a href="#kontakt" class="btn-buy text-center">NARUČI</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row g-3 justify-content-center">
+            <div class="col-sm-3 product-card-container">
+                <div class="card product-card">
+                    <div class="card-img-container">
+                        <img src="privjesak1novo.jpeg" class="card-img-top" alt="maskica 1">
+                    </div>
+                    <div class="card-body p-4 pt-0">
+                        <h5 class="fw-bold mb-1"> New Happy Elephant</h5>
+                        <p class="small text-muted mb-3">Uljepšaj si stvari sa malim slonom</p>
+                        <span class="price-tag">3,00 KM</span>
+                        <a href="#kontakt" class="btn-buy text-center">NARUČI</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="Kemijske" class="tabcontent">
+        <div class="row g-3 justify-content-center">
+
+            <div class="col-sm-3 product-card-container">
+                <div class="card product-card">
+                    <div class="card-img-container">
+                        <img src="kemijska 1.jpeg" class="card-img-top" alt="maskica 1">
+                    </div>
+                    <div class="card-body p-4 pt-0">
+                        <h5 class="fw-bold mb-1">Crvena Čupka</h5>
+                        <p class="small text-muted mb-3">Crvena kemijska olovka sa čupavom površinom</p>
+                        <span class="price-tag">5,00 KM</span>
+                        <a href="#kontakt" class="btn-buy text-center">NARUČI</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-3 product-card-container">
+                <div class="card product-card">
+                    <spam class="badge-sold">PRODATA</spam>
+                    <div class="card-img-container">
+                        <img src="kemijska 2.jpeg" class="card-img-top" alt="Neon Waves">
+                    </div>
+                    <div class="card-body p-4 pt-0">
+                        <h5 class="fw-bold mb-1">Siva Čupka + Privjesak</h5>
+                        <p class="small text-muted mb-3">Siva kemijska olovka sa čupavom površinom</p>
+                        <span class="price-tag">5,00 KM</span>
+                        <a href="#kontakt" class="btn-buy text-center">NARUČI</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-3 product-card-container">
+                <div class="card product-card">
+                    <spam class="badge-sold">PRODATA</spam>
+                    <div class="card-img-container">
+                        <img src="kemijska 3.jpeg" class="card-img-top" alt="Topographic Pulse">
+                    </div>
+                    <div class="card-body p-4 pt-0">
+                        <h5 class="fw-bold mb-1">Roza Čupka + Privjesak</h5>
+                        <p class="small text-muted mb-3">Roza kemijska olovka sa čupavom površinom</p>
+                        <span class="price-tag">5,00 KM</span>
+                        <a href="#kontakt" class="btn-buy text-center">NARUČI</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row g-3 justify-content-center">
+            <div class="col-sm-3 product-card-container">
+                <div class="card product-card">
+                    <div class="card-img-container">
+                        <img src="kemijska 4đ.jpg" class="card-img-top" alt="maskica 1">
+                    </div>
+                    <div class="card-body p-4 pt-0">
+                        <h5 class="fw-bold mb-1">Crna Čupka</h5>
+                        <p class="small text-muted mb-3">Crna kemijska olovka sa čupavom površinom</p>
+                        <span class="price-tag">5,00 KM</span>
+                        <a href="#kontakt" class="btn-buy text-center">NARUČI</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-3 product-card-container">
+                <div class="card product-card">
+                    <div class="card-img-container">
+                        <img src="kemijska 6(smedza).jpg" class="card-img-top" alt="Neon Waves">
+                    </div>
+                    <div class="card-body p-4 pt-0">
+                        <h5 class="fw-bold mb-1">Smeđa Čupka</h5>
+                        <p class="small text-muted mb-3">Smeđa kemijska olovka sa čupavom površinom</p>
+                        <span class="price-tag">5,00 KM</span>
+                        <a href="#kontakt" class="btn-buy text-center">NARUČI</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-3 product-card-container">
+                <div class="card product-card">
+                    <div class="card-img-container">
+                        <img src="kemijska 5.jpg" class="card-img-top" alt="Topographic Pulse">
+                    </div>
+                    <div class="card-body p-4 pt-0">
+                        <h5 class="fw-bold mb-1">Žuta Čupka</h5>
+                        <p class="small text-muted mb-3">Žuta kemijska olovka sa čupavom površinom</p>
+                        <span class="price-tag">5,00 KM</span>
+                        <a href="#kontakt" class="btn-buy text-center">NARUČI</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row g-3 justify-content-center">
+            <div class="col-sm-3 product-card-container">
+                <div class="card product-card">
+                    <div class="card-img-container">
+                        <img src="kemijska 7.jpg" class="card-img-top" alt="maskica 1">
+                    </div>
+                    <div class="card-body p-4 pt-0">
+                        <h5 class="fw-bold mb-1">Bordo Čupka</h5>
+                        <p class="small text-muted mb-3">Bordo kemijska olovka sa čupavom površinom</p>
+                        <span class="price-tag">5,00 KM</span>
+                        <a href="#kontakt" class="btn-buy text-center">NARUČI</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-3 product-card-container">
+                <div class="card product-card">
+                    <div class="card-img-container">
+                        <img src="kemijska 8.jpg" class="card-img-top" alt="Neon Waves">
+                    </div>
+                    <div class="card-body p-4 pt-0">
+                        <h5 class="fw-bold mb-1">Plava Čupka</h5>
+                        <p class="small text-muted mb-3">Plava kemijska olovka sa čupavom površinom</p>
+                        <span class="price-tag">5,00 KM</span>
+                        <a href="#kontakt" class="btn-buy text-center">NARUČI</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-3 product-card-container">
+                <div class="card product-card">
+                    <div class="card-img-container">
+                        <img src="kemijska 9.jpg" class="card-img-top" alt="Topographic Pulse">
+                    </div>
+                    <div class="card-body p-4 pt-0">
+                        <h5 class="fw-bold mb-1">Roza Čupka</h5>
+                        <p class="small text-muted mb-3">Roza kemijska olovka sa čupavom površinom</p>
+                        <span class="price-tag">5,00 KM</span>
+                        <a href="#kontakt" class="btn-buy text-center">NARUČI</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row g-3 justify-content-center">
+            <div class="col-sm-3 product-card-container">
+                <div class="card product-card">
+                    <div class="card-img-container">
+                        <img src="kemijska 10.jpg" class="card-img-top" alt="maskica 1">
+                    </div>
+                    <div class="card-body p-4 pt-0">
+                        <h5 class="fw-bold mb-1">Svjetlo PLAVA Čupka</h5>
+                        <p class="small text-muted mb-3">Svjetlo plava kemijska olovka sa čupavom površinom</p>
+                        <span class="price-tag">5,00 KM</span>
+                        <a href="#kontakt" class="btn-buy text-center">NARUČI</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 product-card-container">
+                <div class="card product-card">
+                    <div class="card-img-container">
+                        <img src="/proizvod.html/kalista novi proizvodi/kemijska_5.jpeg" class="card-img-top"
+                            alt="maskica 1">
+                    </div>
+                    <div class="card-body p-4 pt-0">
+                        <h5 class="fw-bold mb-1">Rozi Mali Slon</h5>
+                        <p class="small text-muted mb-3">Roza kemijska olovka sa čupavom površinom</p>
+                        <span class="price-tag">5,00 KM</span>
+                        <a href="#kontakt" class="btn-buy text-center">NARUČI</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 product-card-container">
+                <div class="card product-card">
+                    <div class="card-img-container">
+                        <img src="/proizvod.html/kalista novi proizvodi/kemijska_crna.jpeg" class="card-img-top"
+                            alt="maskica 1">
+                    </div>
+                    <div class="card-body p-4 pt-0">
+                        <h5 class="fw-bold mb-1">Crna Čupka</h5>
+                        <p class="small text-muted mb-3">Crna kemijska olovka sa čupavom površinom</p>
+                        <span class="price-tag">5,00 KM</span>
+                        <a href="#kontakt" class="btn-buy text-center">NARUČI</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row g-3 justify-content-center">
+            <div class="col-sm-3 product-card-container">
+                <div class="card product-card">
+                    <div class="card-img-container">
+                        <img src="/proizvod.html/kalista novi proizvodi/kemijska_7.jpeg" class="card-img-top"
+                            alt="maskica 1">
+                    </div>
+                    <div class="card-body p-4 pt-0">
+                        <h5 class="fw-bold mb-1">Plava Čupka</h5>
+                        <p class="small text-muted mb-3">Plava kemijska olovka sa čupavom površinom</p>
+                        <span class="price-tag">5,00 KM</span>
+                        <a href="#kontakt" class="btn-buy text-center">NARUČI</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="Pandora" class="tabcontent">
+        <div class="row g-3 justify-content-center">
+            <div class="col-sm-3 product-card-container">
+                <div class="card product-card">
+                    <div class="card-img-container">
+                        <img src="pandora 1.jpeg" class="card-img-top" alt="maskica 1">
+                    </div>
+                    <div class="card-body p-4 pt-0">
+                        <h5 class="fw-bold mb-1">Kristalna Čarolija</h5>
+                        <p class="small text-muted mb-3">Tvoj svakodnevni dodir luksuza.</p>
+                        <span class="price-tag">4,00 KM</span>
+                        <a href="#kontakt" class="btn-buy text-center">NARUČI</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-3 product-card-container">
+                <div class="card product-card">
+                    <span class="badge-sold">SOLD</span>
+
+                    <div class="card-img-container">
+                        <img src="pandora 2.jpeg" class="card-img-top" alt="Neon Waves">
+                    </div>
+                    <div class="card-body p-4 pt-0">
+                        <h5 class="fw-bold mb-1">Rose-Gold Romansa</h5>
+                        <p class="small text-muted mb-3">Blistaj u ritmu svog srca.</p>
+                        <span class="price-tag">4,00 KM</span>
+                        <a href="#kontakt" class="btn-buy text-center">NARUČI</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-3 product-card-container">
+                <div class="card product-card">
+                    <div class="card-img-container">
+                        <img src="pandora 3.jpeg" class="card-img-top" alt="Topographic Pulse">
+                    </div>
+                    <div class="card-body p-4 pt-0">
+                        <h5 class="fw-bold mb-1">Ružičasta Strast</h5>
+                        <p class="small text-muted mb-3">Neka tvoje srce diktira stil.</p>
+                        <span class="price-tag">4,00 KM</span>
+                        <a href="#kontakt" class="btn-buy text-center">NARUČI</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row g-3 justify-content-center">
+            <div class="col-sm-3 product-card-container">
+                <div class="card product-card">
+                    <div class="card-img-container">
+                        <img src="pandora 4.jpeg" class="card-img-top" alt="maskica 1">
+                    </div>
+                    <div class="card-body p-4 pt-0">
+                        <h5 class="fw-bold mb-1">Ponoćna Pahulja</h5>
+                        <p class="small text-muted mb-3">Unikatna kao svaka pahulja.</p>
+                        <span class="price-tag">4,00 KM</span>
+                        <a href="#kontakt" class="btn-buy text-center">NARUČI</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-3 product-card-container">
+                <div class="card product-card">
+                    <span class="badge-sold">PRODATA</span>
+
+                    <div class="card-img-container">
+                        <img src="pandora 5.jpeg" class="card-img-top" alt="Neon Waves">
+                    </div>
+                    <div class="card-body p-4 pt-0">
+                        <h5 class="fw-bold mb-1">Rose-Gold Romansa</h5>
+                        <p class="small text-muted mb-3">Blistaj u ritmu svog srca.</p>
+                        <span class="price-tag">4,00 KM</span>
+                        <a href="#kontakt" class="btn-buy text-center">NARUČI</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-3 product-card-container">
+
+                <div class="card product-card">
+                    <spam class="badge-sold">PRODATA</spam>
+                    <div class="card-img-container">
+                        <img src="pandora 6.jpeg" class="card-img-top" alt="Topographic Pulse">
+                    </div>
+                    <div class="card-body p-4 pt-0">
+                        <h5 class="fw-bold mb-1">Morska Sirena</h5>
+                        <p class="small text-muted mb-3">Zadrži miris mora na svom zglobu.</p>
+                        <span class="price-tag">4,00 KM</span>
+                        <a href="#kontakt" class="btn-buy text-center">NARUČI</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row g-3 justify-content-center">
+            <div class="col-sm-3 product-card-container">
+                <div class="card product-card">
+                    <div class="card-img-container">
+                        <img src="pandora1novo.jpeg" class="card-img-top" alt="maskica 1">
+                    </div>
+                    <div class="card-body p-4 pt-0">
+                        <h5 class="fw-bold mb-1">Plava Sreća</h5>
+                        <p class="small text-muted mb-3">Unikatna kao svaka sreća.</p>
+                        <span class="price-tag">4,00 KM</span>
+                        <a href="#kontakt" class="btn-buy text-center">NARUČI</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-3 product-card-container">
+                <div class="card product-card">
+                    <div class="card-img-container">
+                        <img src="pandora2novo.jpeg" class="card-img-top" alt="Neon Waves">
+                    </div>
+                    <div class="card-body p-4 pt-0">
+                        <h5 class="fw-bold mb-1">Roza Igra</h5>
+                        <p class="small text-muted mb-3">Blistaj u ritmu svog srca.</p>
+                        <span class="price-tag">4,00 KM</span>
+                        <a href="#kontakt" class="btn-buy text-center">NARUČI</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-3 product-card-container">
+
+                <div class="card product-card">
+                    <div class="card-img-container">
+                        <img src="pandora3novo.jpeg" class="card-img-top" alt="Topographic Pulse">
+                    </div>
+                    <div class="card-body p-4 pt-0">
+                        <h5 class="fw-bold mb-1">Rozo Zlato</h5>
+                        <p class="small text-muted mb-3">Zadrži miris zlata na svom zglobu.</p>
+                        <span class="price-tag">4,00 KM</span>
+                        <a href="#kontakt" class="btn-buy text-center">NARUČI</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row g-3 justify-content-center">
+            <div class="col-sm-3 product-card-container">
+                <div class="card product-card">
+                    <div class="card-img-container">
+                        <img src="pandora4novo.jpeg" class="card-img-top" alt="maskica 1">
+                    </div>
+                    <div class="card-body p-4 pt-0">
+                        <h5 class="fw-bold mb-1">Siber Roza</h5>
+                        <p class="small text-muted mb-3">Unikatna kao svaka pahulja.</p>
+                        <span class="price-tag">4,00 KM</span>
+                        <a href="#kontakt" class="btn-buy text-center">NARUČI</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-3 product-card-container">
+                <div class="card product-card">
+                    <div class="card-img-container">
+                        <img src="pandora5novo.jpeg" class="card-img-top" alt="Neon Waves">
+                    </div>
+                    <div class="card-body p-4 pt-0">
+                        <h5 class="fw-bold mb-1">Rose-Gold Romansa</h5>
+                        <p class="small text-muted mb-3">Blistaj u ritmu svog srca.</p>
+                        <span class="price-tag">4,00 KM</span>
+                        <a href="#kontakt" class="btn-buy text-center">NARUČI</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-3 product-card-container">
+
+                <div class="card product-card">
+                    <div class="card-img-container">
+                        <img src="pandora7novo.jpeg" class="card-img-top" alt="Topographic Pulse">
+                    </div>
+                    <div class="card-body p-4 pt-0">
+                        <h5 class="fw-bold mb-1">Rozi Silver</h5>
+                        <p class="small text-muted mb-3">Zadrži miris silbera na svom zglobu.</p>
+                        <span class="price-tag">4,00 KM</span>
+                        <a href="#kontakt" class="btn-buy text-center">NARUČI</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="Telefon" class="tabcontent">
+        <div class="row g-3 justify-content-center">
+            <div class="col-sm-3 product-card-container">
+                <div class="card product-card">
+                    <div class="card-img-container">
+                        <img src="telefon 1.jpeg" class="card-img-top" alt="maskica 1">
+                    </div>
+                    <div class="card-body p-4 pt-0">
+                        <h5 class="fw-bold mb-1">Mali smeđi medo</h5>
+                        <p class="small text-muted mb-3">Ja sam mali medo!</p>
+                        <span class="price-tag">4.00 KM</span>
+                        <a href="#kontakt" class="btn-buy text-center">NARUČI</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-3 product-card-container">
+                <div class="card product-card">
+                    <div class="card-img-container">
+                        <img src="telefon 2.jpeg" class="card-img-top" alt="Neon Waves">
+                    </div>
+                    <div class="card-body p-4 pt-0">
+                        <h5 class="fw-bold mb-1">Mali crni Medo</h5>
+                        <p class="small text-muted mb-3">Ja sam mali medo!</p>
+                        <span class="price-tag">4,00 KM</span>
+                        <a href="#kontakt" class="btn-buy text-center">NARUČI</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-3 product-card-container">
+
+                <div class="card product-card">
+                    <div class="card-img-container">
+                        <img src="telefon 3.jpeg" class="card-img-top" alt="Topographic Pulse">
+                    </div>
+                    <div class="card-body p-4 pt-0">
+                        <h5 class="fw-bold mb-1">Mali rozi Medo</h5>
+                        <p class="small text-muted mb-3">Ja sam mali medo!</p>
+                        <span class="price-tag">4,00 KM</span>
+                        <a href="#kontakt" class="btn-buy text-center">NARUČI</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row g-3 justify-content-center">
+            <div class="col-sm-3 product-card-container">
+                <div class="card product-card">
+
+                    <div class="card-img-container">
+                        <img src="telefon 4.jpeg" class="card-img-top" alt="maskica 1">
+                    </div>
+                    <div class="card-body p-4 pt-0">
+                        <h5 class="fw-bold mb-1">Mala siva maca</h5>
+                        <p class="small text-muted mb-3">Ja sam mala maca</p>
+                        <span class="price-tag">4,00 KM</span>
+                        <a href="#kontakt" class="btn-buy text-center">NARUČI</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 product-card-container">
+                <div class="card product-card">
+
+                    <div class="card-img-container">
+                        <img src="telefon 5.jpeg" class="card-img-top" alt="maskica 1">
+                    </div>
+                    <div class="card-body p-4 pt-0">
+                        <h5 class="fw-bold mb-1">Mali bjeli Pas</h5>
+                        <p class="small text-muted mb-3">Ja sam mali pas</p>
+                        <span class="price-tag">4,00 KM</span>
+                        <a href="#kontakt" class="btn-buy text-center">NARUČI</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div id="Cetkice" class="tabcontent">
+        <div class="row g-3 justify-content-center">
+            <div class="col-sm-3 product-card-container">
+                <div class="card product-card">
+
+                    <div class="card-img-container">
+                        <img src="/proizvod.html/kalista novi proizvodi/kemijska_!.jpeg" class="card-img-top"
+                            alt="maskica 1">
+                    </div>
+                    <div class="card-body p-4 pt-0">
+                        <h5 class="fw-bold mb-1">Mala Četkica</h5>
+                        <p class="small text-muted mb-3">Ja sam mala četkica</p>
+                        <span class="price-tag">3,00 KM</span>
+                        <a href="#kontakt" class="btn-buy text-center">NARUČI</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 product-card-container">
+                <div class="card product-card">
+
+                    <div class="card-img-container">
+                        <img src="/proizvod.html/kalista novi proizvodi/kemijska_3.jpeg" class="card-img-top"
+                            alt="maskica 1">
+                    </div>
+                    <div class="card-body p-4 pt-0">
+                        <h5 class="fw-bold mb-1">Četkica s većim dlakama</h5>
+                        <p class="small text-muted mb-3">Ja sam četkica s većim dlakama</p>
+                        <span class="price-tag">3,00 KM</span>
+                        <a href="#kontakt" class="btn-buy text-center">NARUČI</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 product-card-container">
+                <div class="card product-card">
+
+                    <div class="card-img-container">
+                        <img src="/proizvod.html/kalista novi proizvodi/kemijska_4.jpeg" class="card-img-top"
+                            alt="maskica 1">
+                    </div>
+                    <div class="card-body p-4 pt-0">
+                        <h5 class="fw-bold mb-1">Mala lijepa četkica</h5>
+                        <p class="small text-muted mb-3">Ja sam mala lijepa četkica</p>
+                        <span class="price-tag">3,00 KM</span>
+                        <a href="#kontakt" class="btn-buy text-center">NARUČI</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="kontakt" class="text-center">
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-md-6">
+                    <h2 style="font-weight: 900; font-size: 1.8rem;">Pridružite se Whatsapp grupi:</h2>
+                    <a href="https://chat.whatsapp.com/FbVKZDfPIG4ByWN7q8kdaS" class="btn btn-footer"
+                        target="_blank">Pridružite se</a>
+                </div>
+                <div class="col-md-6">
+                    <h2 style="font-weight: 900; font-size: 1.8rem;">Kontakt za narudžbe:</h2>
+                    <a href="tel:+38763002639" class="btn btn-footer">+387 63 002
+                        639</a>
+                    <p class="mt-2">Vlasnica</p>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-12 border-top pt-4">
+                    <p>&copy; 2026 DESIGN BY KALISTA. Sva prava zadržana.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        function openCity(evt, cityName) {
+            // Declare all variables
+            var i, tabcontent, tablinks;
+
+            // Get all elements with class="tabcontent" and hide them
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            // Get all elements with class="tablinks" and remove the class "active"
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            // Show the current tab, and add an "active" class to the button that opened the tab
+            document.getElementById(cityName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

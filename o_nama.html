@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="hr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DESIGN BY KALISTA - O nama</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: rgb(255, 244, 237);
+            color: #1a1a1a;
+        }
+
+        /* Gornji header */
+        .logo-header {
+            background-color: rgb(255, 244, 237);
+            padding: 20px 0;
+        }
+
+        /* Stich prilagodba */
+        #stich {
+            height: 150px;
+        }
+
+        @media (max-width: 768px) {
+            #stich {
+                margin-top: 20px;
+                height: 120px;
+            }
+        }
+
+        /* Navigacija */
+        .navbar {
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            padding: 15px 0;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        footer {
+            background: pink;
+            color: white;
+            padding: 80px 0;
+            margin-top: 100px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="logo-header">
+        <div class="container">
+            <div class="row row-cols-1 row-cols-md-2 align-items-center text-center">
+                <div class="col text-md-start">
+                    <img src="logo pravi.jpeg" alt="logo" style="height: 150px;">
+                </div>
+
+                <div class="col text-md-end">
+                    <img src="image.png" alt="stich" id="stich">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-black" href="#" style="font-weight: 900; color: pink;">DESIGN BY KALISTA</a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav gap-lg-4">
+                    <li class="nav-item"><a class="nav-link" href="index.html" style="color: pink;">Početna</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#modeli" style="color: pink;">Kolekcija</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link active" href="o_nama.html"
+                            style="border-bottom: 2px solid pink; color: pink;">O nama</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#kontakt" style="color: pink;">Kontakt</a></li>
+                    <li class="nav-item"><a class="nav-link" href="proizvodi.html" style="color: pink;">Proizvodi</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5 pt-3">
+        <div class="text-center">
+            <h1 style="font-weight: 900; font-size: calc(2rem + 2vw); letter-spacing: -2px; color: pink;">O NAMA</h1>
+        </div>
+    </div>
+
+    <div class="container mt-5">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-md-4 text-center mb-4 mb-md-0">
+                <img src="LOGO.png" alt="O nama" class="img-fluid rounded-circle shadow-lg" style="max-width: 250px;">
+            </div>
+            <div class="col-md-8">
+                <p style="font-size: 1.1rem; line-height: 1.8; color: #333;">
+                    Dobrodošli u <strong>DESIGN BY KALISTA</strong>, vaš izvor unikatnih i ručno izrađenih modnih
+                    dodataka! Naša
+                    misija je pružiti vam proizvode koji ne samo da ističu vašu osobnost, već i donose radost i stil u
+                    vaš svakodnevni život.
+                </p>
+                <p style="font-size: 1.1rem; line-height: 1.8; color: #333;">
+                    Svaki komad u našoj kolekciji pažljivo je dizajniran i izrađen s ljubavlju prema detaljima. Bilo da
+                    tražite savršenu narukvicu, kemijsku olovku ili privjesak, kod nas ćete pronaći nešto posebno što će
+                    upotpuniti vaš izgled.
+                </p>
+                <p style="font-size: 1.1rem; line-height: 1.8; color: #333;">
+                    Hvala vam što ste odabrali DESIGN BY KALISTA. Radujemo se što ćemo biti dio vaše modne priče!
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <footer id="kontakt" class="text-center">
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-md-6">
+                    <h2 style="font-weight: 900; font-size: 1.8rem; color: purple;">Pridružite se našoj Whatsapp grupi:
+                    </h2>
+                    <a href="https://chat.whatsapp.com/FbVKZDfPIG4ByWN7q8kdaS" class="btn"
+                        style="background-color: pink; border: 1px solid purple; color: purple;"
+                        target="_blank">Pridružite se</a>
+                </div>
+                <div class="col-md-6">
+                    <h2 style="font-weight: 900; font-size: 1.8rem; color: purple;">Kontakt za narudžbe:</h2>
+                    <a href="https://chat.whatsapp.com/FbVKZDfPIG4ByWN7q8kdaS" class="btn"
+                        style="background-color: pink; border: 1px solid purple; color: purple;" target="_blank">+387 63
+                        002 639</a>
+                    <p class="mt-2" style="color: purple;">Kalista (Vlasnica)</p>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-12">
+                    <p style="color: purple;">&copy; 2026 DESIGN BY KALISTA. Sva prava zadržana.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
